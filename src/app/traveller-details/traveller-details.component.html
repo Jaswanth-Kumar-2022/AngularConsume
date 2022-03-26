@@ -1,0 +1,83 @@
+<nav class="navbar navbar-light bg-warning">
+    <div class="container-fluid">
+        <h2 style="color:rgb(243, 248, 250)">Traveller Details</h2>
+        <div class="d-flex">
+            <button (click)="clickAddTraveller()" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Traveller</button>
+        </div>
+    </div>
+</nav>
+<table class="table mt-3">
+    <thead>
+    <tr>
+        <th>Traveller ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Mobile</th>
+        <th>Boarding</th>
+        <th>Destination</th>
+        <th>Mode of Travel</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dat of travellerData">
+        <td>{{dat.id}}</td>
+        <td>{{dat.Name}}</td>
+        <td>{{dat.Age}}</td>
+        <td>{{dat.Mobile}}</td>
+        <td>{{dat.Boarding}}</td>
+        <td>{{dat.Destination}}</td>
+        <td>{{dat.Transport}}</td>
+        <td>
+            <button (click)="onEdit(dat)" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" >Edit</button> | &nbsp;
+            <button (click)="deleteTraveller(dat)" class="btn btn-danger">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Traveller Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body">
+                <form [formGroup]="formvalue">
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Name</label>
+                      <input type="text" formControlName="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Age</label>
+                      <input type="number" formControlName="Age" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Mobile</label>
+                        <input type="email" formControlName="Mobile" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                       
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Boarding</label>
+                        <input type="text" formControlName="Boarding" class="form-control" id="exampleInputPassword1">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Destination</label>
+                        <input type="text" formControlName="Destination" class="form-control" id="exampleInputPassword1">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Mode Of Transport</label>
+                        <input type="text" formControlName="Transport" class="form-control" id="exampleInputPassword1">
+                      </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button  id="cancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" *ngIf="showAdd" (click)="postTravellerDetails()" class="btn btn-primary">Add Traveller</button>
+              <button type="button" *ngIf="showUpdate" (click)="updateTravellerDetails()" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+      </div>
+</div>
